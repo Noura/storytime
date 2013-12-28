@@ -1,5 +1,13 @@
-.book-image-container, #book-image {
+.book-image-container,
+#book-image {
   max-width: 100%;
+}
+
+#story-image {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 .columns {
@@ -11,6 +19,7 @@
 }
 .column {
   display: inline-block;
+  float: left;
   width: 33%;
   height: 74%;
   margin-top: 9%;
@@ -20,4 +29,8 @@
 .column:last-child {
   margin-left: 9%;
   margin-right: 8%;
+}
+
+p:first-child {
+  -webkit-margin-before: 0;
 }

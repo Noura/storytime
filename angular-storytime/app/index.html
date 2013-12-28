@@ -10,9 +10,15 @@
     <div class="book-image-container">
       <img id="book-image" src="img/open_book.jpg">
     </div>
-    <div class="columns">
-      <div class="column"></div>
-      <div class="column"></div>
+    <div class="columns" ng-controller="PageCtrl">
+      <div class="column">
+        <img id="story-image" src="{{image}}">
+      </div>
+      <div class="column">
+        <p ng-repeat="p in text">
+          {{ p }}
+        </p>
+      </div>
     </div>
   </div>
 
@@ -22,15 +28,15 @@
   <script type="text/javascript">
     // TODO refactor into an angular view
     var storytime_column_height_percent = 0.74;
-    var storytime_top_margin_percent = 0.09;
+    var storytime_top_margin_percent = 0.13;
     var $window = $(window);
     var $book_image = $('#book-image');
     var $columns = $('.column');
     var storytime_columns_sizing = function() {
       var h = $book_image.height();
       $columns.css({
-          height: h * storytime_column_height_percent,
-          margin_top: h * storytime_top_margin_percent,
+          'height': h * storytime_column_height_percent,
+          'margin-top': h * storytime_top_margin_percent,
       });
     };
     $window.load(storytime_columns_sizing);
