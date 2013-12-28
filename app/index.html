@@ -6,7 +6,36 @@
   <link rel="stylesheet" href="css/app.css"/>
 </head>
 <body>
-  <p>This will be a nice story time place.</p>
+  <div class="container">
+    <div class="book-image-container">
+      <img id="book-image" src="img/open_book.jpg">
+    </div>
+    <div class="columns">
+      <div class="column"></div>
+      <div class="column"></div>
+    </div>
+  </div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+  <!-- hack to make columns' height match image as it resizes -->
+  <script type="text/javascript">
+    // TODO refactor into an angular view
+    var storytime_column_height_percent = 0.74;
+    var storytime_top_margin_percent = 0.09;
+    var $window = $(window);
+    var $book_image = $('#book-image');
+    var $columns = $('.column');
+    var storytime_columns_sizing = function() {
+      var h = $book_image.height();
+      $columns.css({
+          height: h * storytime_column_height_percent,
+          margin_top: h * storytime_top_margin_percent,
+      });
+    };
+    $window.load(storytime_columns_sizing);
+    $window.resize(storytime_columns_sizing);
+  </script>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
