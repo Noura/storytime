@@ -1,5 +1,5 @@
 'use strict';
 
-angular.module('storytime', [
+var storytime = angular.module('storytime', [
   'ngRoute',
 ]);
