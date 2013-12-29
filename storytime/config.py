@@ -6,7 +6,7 @@ def genSecretKey(length):
 class config(object):
     DEBUG = False
     TESTING = False
-    DB_ROOT = ''
+    SQLALCHEMY_DATABASE_URI = ''
     SECRET_KEY = genSecretKey(25)
 
 class debugConfig(config):
