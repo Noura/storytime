@@ -5,7 +5,6 @@ storytime.directive('myTextFit', function($document) {
     function link(scope, element, attrs) {
 
       var display_page = function() {
-        console.log('display_page with scope', scope);
         var $inner = $('<div></div>');
         var $last_word = null;
         element.html($inner);
@@ -23,7 +22,7 @@ storytime.directive('myTextFit', function($document) {
             } else {
               p += 1;
               w = 0;
-              $last_word = ('<br><br>');
+              $last_word = $('<br><br>');
             }
             $inner.append($last_word);
           }
@@ -38,7 +37,13 @@ storytime.directive('myTextFit', function($document) {
 
       display_page();
 
-      scope.$watch(scope.start_p, display_page);
+      scope.$watch(function() {
+        return scope.start_p;
+      }, function(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          display_page();
+        }
+      });
     }
 
     return {
