@@ -18,4 +18,18 @@ storytime.controller('PageCtrl', ['$scope', function($scope) {
     }
   };
 
+  $scope.prevPage = function() {
+    console.log('prev page function being called for $scope', $scope);
+    if ($scope.end_p) {
+      $scope.end_w = $scope.start_w - 1;
+      if ($scope.end_w < 0) {
+        $scope.end_w = 0;
+        $scope.end_p -= $scope.start_p - 1;
+      }
+      if ($scope.end_p < 0) {
+        $scope.end_p = 0;
+      }
+    }
+  };
+
 }]);
