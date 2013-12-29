@@ -1,7 +1,6 @@
-from storytime import app, db
+from storytime import app
 import storytime.config as config
-import storytime.models as models
-import storytime.mock as mock
+import storytime.dbtools as dbtools
 
 from flask.ext.script import Manager
 
@@ -19,7 +18,7 @@ manager = Manager(create_app)
 
 @manager.command
 def init_db():
-    db.create_all()
+    dbtools.init_db()
 
 @manager.command
 def run():
