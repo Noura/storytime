@@ -5,6 +5,7 @@ storytime.directive('myTextFit', function($document) {
     function link(scope, element, attrs) {
 
       var display_page = function() {
+        console.log('display_page with scope', scope);
         var $inner = $('<div></div>');
         var $last_word = null;
         element.html($inner);
@@ -45,7 +46,6 @@ storytime.directive('myTextFit', function($document) {
     };
   }).directive('myPageTurner', function($document) {
     function link(scope, element, attrs) {
-      console.log('scope', scope, 'element', element, 'attrs', attrs);
       var $window = $(window);
       var $book_image = $('#book-image');
       var direction = "forward";
