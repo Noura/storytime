@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="../css/app.css"/>
 </head>
 <body>
-  <div class="container" ng-controller="PageCtrl">
+  <div class="container" ng-controller="PageCtrl" my-book-columns>
     <div class="book-image-container">
       <img id="book-image" src="../img/open_book.jpg">
     </div>
@@ -22,27 +22,6 @@
   </div>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
-  <script type="text/javascript">
-    // hack to make columns' height match book image as it resizes
-    // TODO refactor into an angular view
-    var storytime_column_height_percent = 0.74;
-    var storytime_top_margin_percent = 0.13;
-    var $window = $(window);
-    var $book_image = $('#book-image');
-    var $columns = $('.column');
-    var fit_with_book_image = function() {
-      var h = $book_image.height();
-      var w = $book_image.width();
-      var pos = $book_image.position();
-      $columns.css({
-          'height': h * storytime_column_height_percent,
-          'margin-top': h * storytime_top_margin_percent,
-      });
-    };
-    $window.load(fit_with_book_image);
-    $window.resize(fit_with_book_image);
-  </script>
 
     <!-- In production use:
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>

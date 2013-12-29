@@ -1,5 +1,34 @@
 'use strict';
 
+// myBookColumns
+// makes columns' height match book image
+storytime.directive('myBookColumns', function($document) {
+    function link(scope, element, attrs) {
+        var h_percent = 0.74;
+        var top_percent = 0.13;
+        var $window = $(window);
+        var $book_image = $('#book-image');
+        var $columns = $('.column');
+        
+        var fit_with_book_image = function() {
+          var h = $book_image.height();
+          var w = $book_image.width();
+          var pos = $book_image.position();
+          $columns.css({
+              'height': h * storytime_column_height_percent,
+              'margin-top': h * storytime_top_margin_percent,
+          });
+        };
+
+        $window.load(fit_with_book_image);
+        $window.resize(fit_with_book_image);
+    };
+
+    return {
+        link: link,
+    }
+});
+
 // myTextFit
 // displays text word by word so it fills up the page without overflowing
 storytime.directive('myTextFit', function($document) {
@@ -115,11 +144,12 @@ storytime.directive('myTextFit', function($document) {
     return {
         link: link
     };
+});
 
-    // myPageTurner
-    // draws the page turning arrows at the corners of the book image
-    // updates position as book image resizes with window
-}).directive('myPageTurner', function($document) {
+// myPageTurner
+// draws the page turning arrows at the corners of the book image
+// updates position as book image resizes with window
+storytime.directive('myPageTurner', function($document) {
     function link(scope, element, attrs) {
         var $window = $(window);
         var $book_image = $('#book-image');
