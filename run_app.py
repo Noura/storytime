@@ -1,5 +1,5 @@
 from storytime import app
-import storytime.config
+import storytime.config as config
 
 from flask.ext.script import Manager
 
@@ -7,8 +7,14 @@ from flask.ext.script import Manager
 manager = Manager(app)
 
 @manager.command
+def production():
+    app.config.from_object(config.productionConfig)
+    app.run()
+
+@manager.command
 def debug():
-	app.run(debug=True)
+    app.config.from_object(config.debugConfig)
+    app.run()
 
 if __name__=='__main__':
-	app.run()
+    manager.run()
