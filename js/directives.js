@@ -43,25 +43,38 @@ storytime.directive('myTextFit', function($document) {
 
         var words, wi, wf, w, next, insert, dir;
 
+        scope.set_direction = function(direction) {
+            dir = direction;
+        };
         var init = function() {
-            wi = -1;
-            wf = -1;
-            w = 0;
             words = [];
             angular.forEach(scope.page.text, function(paragraph, p) {
                 var these_words = paragraph.split(/\s/g);
                 words.push.apply(words, these_words);
                 words.push('<br><br>');
             });
+            if (dir === 'forward') {
+                wf = -1;
+                wi = -1;
+                w = 0;
+            } else if (dir === 'backward') {
+                wi = words.length;
+                wf = 0;
+                w = 0;
+            }
         };
 
+        // say whether we are showing the very beginning or very end
+        // used by PageCtrl to decide when to request a new page
         scope.at_page_beginning = function() {
             return (wi === 0);
         };
         scope.at_page_end = function() {
-            return (wf >= words.length);
+            return (wf >= words.length - 1);
         }
 
+        // range_check, incr, and decr are helper functions
+        // to move over the words without going out of range
         var range_check = function(w) {
             // intentionally shadows w to test out if a new value is in range
             return w < words.length && w >= 0;
@@ -84,8 +97,7 @@ storytime.directive('myTextFit', function($document) {
         };
 
         // going forward or backward within the same story page
-        var display_page = function(direction) {
-            dir = direction;
+        var display_page = function() {
             if (dir === 'forward') {
                 w = wi = wf + 1;
                 next = incr;
@@ -95,12 +107,22 @@ storytime.directive('myTextFit', function($document) {
                 next = decr;
                 insert = 'prepend';
             }
-            reflow_words();
+            flow_words();
+        };
+
+        // reflows words forward from wi
+        // ex. used on window 'resize' event
+        scope.reflow_words = function() {
+            w = wi;
+            dir = 'forward';
+            next = incr;
+            insert = 'append';
+            flow_words();
         };
 
         // either reflows words forwards from wi or backwards from wf
         // such that they fit on the page
-        var reflow_words = function() {
+        var flow_words = function() {
             var $inner = $('<div></div>');
             element.html($inner);
             var $word = null;
@@ -135,22 +157,12 @@ storytime.directive('myTextFit', function($document) {
             }
         };
 
-        // reflows words forward from wi
-        // ex. used on window 'resize' event
-        scope.reflow_words = function() {
-            w = wi;
-            dir = 'forward';
-            next = incr;
-            insert = 'append';
-            reflow_words();
-        };
-
         // scope.page_turn_dir is set by PageCtrl to trigger going forward/back
         scope.$watch(function() {
             return scope.page_turn_dir;
         }, function(newValue, oldValue) {
             if (newValue !== oldValue && newValue !== null) {
-                display_page(newValue);
+                display_page();
                 scope.page_turn_dir = null;
             }
         });
@@ -161,12 +173,13 @@ storytime.directive('myTextFit', function($document) {
         }, function(newValue, oldValue) {
             if (newValue !== oldValue) {
                 init();
-                display_page('forward');
+                display_page();
             }
         });
 
+        dir = 'forward';
         init();
-        display_page('forward');
+        display_page();
     }
 
     return {

@@ -21,7 +21,6 @@ var PAGES = [
         'image': 'http://digital.library.upenn.edu/women/williams/rabbit/horse.jpeg',
         'text':
         [
-            'For a long time he lived in the toy cupboard or on the nursery floor, and no one thought very much about him. He was naturally shy, and being only made of velveteen, some of the more expensive toys quite snubbed him. The mechanical toys were very superior, and looked down upon every one else; they were full of modern ideas, and pretended they were real. The model boat, who had lived through two seasons and lost most of his paint, caught the tone from them and never missed an opportunity of referring to his rigging in technical terms. The Rabbit could not claim to be a model of anything, for he didn\'t know that real rabbits existed; he thought they were all stuffed with sawdust like himself, and he understood that sawdust was quite out-of-date and should never be mentioned in modern circles. Even Timothy, the jointed wooden lion, who was made by the disabled soldiers, and should have had broader views, put on airs and pretended he was connected with Government. Between them all the poor little Rabbit was made to feel himself very insignificant and commonplace, and the only person who was kind to him at all was the Skin Horse.', 
             'The Skin Horse had lived longer in the nursery than any of the others. He was so old that his brown coat was bald in patches and showed the seams underneath, and most of the hairs in his tail had been pulled out to string bead necklaces. He was wise, for he had seen a long succession of mechanical toys arrive to boast and swagger, and by-and-by break their mainsprings and pass away, and he knew that they were only toys, and would never turn into anything else. For nursery magic is very strange and wonderful, and only those playthings that are old and wise and experienced like the Skin Horse understand all about it.',
             '"What is REAL?" asked the Rabbit one day, when they were lying side by side near the nursery fender, before Nana came to tidy the room. "Does it mean having things that buzz inside you and a stick-out handle?"',
             '"Real isn\'t how you are made," said the Skin Horse. "It\'s a thing that happens to you. When a child loves you for a long, long time, not just to play with, but REALLY loves you, then you become Real."',
@@ -44,6 +43,6 @@ storytime.service('storyAPI', function($http) {
     },
     */
     this.getPage = function(n) {
-        return PAGES[n];
+        return PAGES[n - 1];
     };
 });
