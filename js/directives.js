@@ -15,8 +15,8 @@ storytime.directive('myBookColumns', function($document) {
           var w = $book_image.width();
           var pos = $book_image.position();
           $columns.css({
-              'height': h * storytime_column_height_percent,
-              'margin-top': h * storytime_top_margin_percent,
+              'height': h * h_percent,
+              'margin-top': h * top_percent,
           });
         };
 
@@ -34,7 +34,7 @@ storytime.directive('myBookColumns', function($document) {
 storytime.directive('myTextFit', function($document) {
     function link(scope, element, attrs) {
 
-        var words, wi, wf, w;
+        var words, wi, wf, w, next, insert, dir;
 
         var init = function() {
             wi = -1;
@@ -76,8 +76,8 @@ storytime.directive('myTextFit', function($document) {
             }
         };
 
-        var display_page = function(dir) {
-            var next, insert;
+        var display_page = function(direction) {
+            dir = direction;
             if (dir === 'forward') {
                 w = wi = wf + 1;
                 next = incr;
@@ -87,6 +87,10 @@ storytime.directive('myTextFit', function($document) {
                 next = decr;
                 insert = 'prepend';
             }
+            reflow_words();
+        };
+
+        var reflow_words = function() {
             var $inner = $('<div></div>');
             element.html($inner);
             var $word = null;
