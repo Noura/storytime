@@ -9,7 +9,7 @@ storytime.directive('myBookColumns', function($document) {
         var $window = $(window);
         var $book_image = $('#book-image');
         var $columns = $('.column');
-        
+
         var fit_with_book_image = function() {
           var h = $book_image.height();
           var w = $book_image.width();
@@ -20,8 +20,14 @@ storytime.directive('myBookColumns', function($document) {
           });
         };
 
-        $window.load(fit_with_book_image);
-        $window.resize(fit_with_book_image);
+        $window.load(function() {
+            fit_with_book_image();
+            scope.reflow_words();
+        });
+        $window.resize(function() {
+            fit_with_book_image();
+            scope.reflow_words();
+        });
     };
 
     return {
@@ -114,14 +120,17 @@ storytime.directive('myTextFit', function($document) {
 
             if (dir === 'forward') {
                 wf = c ? w - 2 : w;
+                w = wi;
             } else if (dir === 'backward') {
                 wi = c ? w + 1 : w;
+                w = wf;
             }
 
             if ($inner.height() > element.height()) {
                 $word.remove();
             }
         };
+        scope.reflow_words = reflow_words;
 
         scope.$watch(function() {
             return scope.page_turn_dir;
