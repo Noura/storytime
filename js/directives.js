@@ -97,6 +97,7 @@ storytime.directive('myTextFit', function($document) {
         };
 
         var reflow_words = function() {
+            console.log('reflow words', dir, 'w', w, 'wi', wi, 'wf', wf);
             var $inner = $('<div></div>');
             element.html($inner);
             var $word = null;
@@ -130,7 +131,13 @@ storytime.directive('myTextFit', function($document) {
                 $word.remove();
             }
         };
-        scope.reflow_words = reflow_words;
+        scope.reflow_words = function() {
+            w = wi;
+            dir = 'forward';
+            next = incr;
+            insert = 'append';
+            reflow_words();
+        };
 
         scope.$watch(function() {
             return scope.page_turn_dir;
