@@ -43,4 +43,31 @@ storytime.directive('myTextFit', function($document) {
     return {
       link: link
     };
+  }).directive('myPageTurner', function($document) {
+    function link(scope, element, attrs) {
+      console.log('scope', scope, 'element', element, 'attrs', attrs);
+      var $window = $(window);
+      var $book_image = $('#book-image');
+      var direction = "forward";
+      // TODO how to go backward?
+      if (attrs.myPageTurner == "backward") {
+        direction = "backward";
+      }
+      var sync_position = function() {
+        var h = $book_image.height();
+        var w = $book_image.width();
+        var pos = $book_image.position();
+        element.css({
+          'top': pos.top + h * 0.9,
+          'left': pos.left + w * (direction == "forward" ? 0.93 : 0.07),
+        });
+      }
+
+      sync_position();
+      $window.on('resize', sync_position);
+    }
+
+    return {
+      link: link
+    };
   });

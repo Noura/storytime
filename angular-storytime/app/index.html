@@ -17,8 +17,8 @@
       <div class="column text" my-text-fit>
       </div>
     </div>
-    <div id="next-page">&raquo;</div>
-    <div id="prev-page">&laquo;</div>
+    <div class="page-turner" my-page-turner="forward">&raquo;</div>
+    <div class="page-turner" my-page-turner="backward">&laquo;</div>
   </div>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -29,12 +29,9 @@
     // TODO refactor into an angular view
     var storytime_column_height_percent = 0.74;
     var storytime_top_margin_percent = 0.13;
-    var storytime_next_page_top_percent = .9;
-    var storytime_next_page_left_percent = .93;
     var $window = $(window);
     var $book_image = $('#book-image');
     var $columns = $('.column');
-    var $next_page = $('#next-page');
     var fit_with_book_image = function() {
       var h = $book_image.height();
       var w = $book_image.width();
@@ -42,10 +39,6 @@
       $columns.css({
           'height': h * storytime_column_height_percent,
           'margin-top': h * storytime_top_margin_percent,
-      });
-      $next_page.css({
-          'top': pos.top + h * storytime_next_page_top_percent,
-          'left': pos.left  + w * storytime_next_page_left_percent,
       });
     };
     $window.load(fit_with_book_image);

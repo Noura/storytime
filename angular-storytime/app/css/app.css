@@ -2,7 +2,7 @@
 #book-image {
   max-width: 100%;
 }
-#next-page, #prev-page {
+.page-turner {
   position: absolute;
   cursor: pointer;
 }
