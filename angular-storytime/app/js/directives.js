@@ -5,6 +5,7 @@
 storytime.directive('myTextFit', function($document) {
     function link(scope, element, attrs) {
 
+      // TODO make more variables private since no one else needs them
       scope.paragraphs = [];
       angular.forEach(scope.page.text, function(paragraph, i) {
         scope.paragraphs.push(paragraph.split(/\s/g));

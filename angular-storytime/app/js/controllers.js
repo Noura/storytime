@@ -1,8 +1,7 @@
 'use strict';
 
 storytime.controller('PageCtrl', function($scope, storyAPI) {
-  $scope.page = storyAPI.getPage(1);
-  console.log($scope.page);
+  $scope.page = storyAPI.getPage(0);
 
   $scope.nextPage = function() {
     // flag that myTextFit watches
