@@ -67,7 +67,7 @@ storytime.directive('myTextFit', function($document) {
         // say whether we are showing the very beginning or very end
         // used by PageCtrl to decide when to request a new page
         scope.at_page_beginning = function() {
-            return (wi === 0);
+            return (wi <= 0);
         };
         scope.at_page_end = function() {
             return (wf >= words.length - 1);
@@ -189,16 +189,15 @@ storytime.directive('myTextFit', function($document) {
 
 // myPageTurner
 // draws the page turning arrows at the corners of the book image
-// updates position as book image resizes with window
 storytime.directive('myPageTurner', function($document) {
     function link(scope, element, attrs) {
         var $window = $(window);
         var $book_image = $('#book-image');
-        var direction = "forward";
-        // TODO how to go backward?
-        if (attrs.myPageTurner == "backward") {
-            direction = "backward";
-        }
+        console.assert(attrs.myPageTurner === 'forward'
+            || attrs.myPageTurner === 'backward');
+        var direction = attrs.myPageTurner;
+
+        // updates position as book image resizes with window
         var sync_position = function() {
             var h = $book_image.height();
             var w = $book_image.width();
@@ -207,10 +206,56 @@ storytime.directive('myPageTurner', function($document) {
                 'top': pos.top + h * 0.9,
                 'left': pos.left + w * (direction == "forward" ? 0.93 : 0.07),
             });
+        };
+
+        // don't show arrows when there are no more pages in that direction
+        var hide_or_show = function() {
+            console.log('hide_or_show', 'at page end', scope.at_page_end(), 'direction', direction, 'at page beginning', scope.at_page_beginning());
+            if (   (
+                    scope.at_page_end()                // if we are at the end
+                    && scope.page.page === scope.page.pages // of the last page,
+                    && direction === 'forward'         // hide forward arrow
+                   )
+                ||
+                   (
+                    scope.at_page_beginning()   // or if we are at beginning
+                    && scope.page.page === 1         // of the first page,
+                    && direction === 'backward' // hide back arrow
+                   )
+               ) {
+                element.hide();
+            } else {
+                element.show();
+            }
+        };
+
+        // TODO throttle callback for performance
+        $window.on('resize', sync_position);
+
+        scope.$watch(function() {
+            return scope.page.page;
+        }, function(newValue, oldValue) {
+            if (newValue !== oldValue) {
+                hide_or_show();
+            }
+        });
+
+        var check;
+        if (direction === 'forward') {
+            check = 'at_page_beginning';
+        } else if (direction === 'backward') {
+            check = 'at_page_end';
         }
+        scope.$watch(function() {
+            return scope[check]();
+        }, function(newValue, oldValue) {
+            if (newValue !== oldValue) {
+                hide_or_show();
+            }
+        });
 
         sync_position();
-        $window.on('resize', sync_position);
+        hide_or_show();
     }
 
     return {
