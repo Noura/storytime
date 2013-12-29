@@ -12,35 +12,44 @@
     </div>
     <div class="columns" ng-controller="PageCtrl">
       <div class="column">
-        <img id="story-image" src="{{image}}">
+        <img id="story-image">
       </div>
-      <div class="column">
-        <p ng-repeat="p in text">
-          {{ p }}
-        </p>
+      <div class="column text" my-text-fit>
       </div>
     </div>
+    <div id="next-page">&raquo;</div>
+    <div id="prev-page">&laquo;</div>
   </div>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
-  <!-- hack to make columns' height match image as it resizes -->
   <script type="text/javascript">
+    // hack to make columns' height match book image as it resizes
+    // and make "next page" button line up with book image too
     // TODO refactor into an angular view
     var storytime_column_height_percent = 0.74;
     var storytime_top_margin_percent = 0.13;
+    var storytime_next_page_top_percent = .9;
+    var storytime_next_page_left_percent = .93;
     var $window = $(window);
     var $book_image = $('#book-image');
     var $columns = $('.column');
-    var storytime_columns_sizing = function() {
+    var $next_page = $('#next-page');
+    var fit_with_book_image = function() {
       var h = $book_image.height();
+      var w = $book_image.width();
+      var pos = $book_image.position();
       $columns.css({
           'height': h * storytime_column_height_percent,
           'margin-top': h * storytime_top_margin_percent,
       });
+      $next_page.css({
+          'top': pos.top + h * storytime_next_page_top_percent,
+          'left': pos.left  + w * storytime_next_page_left_percent,
+      });
     };
-    $window.load(storytime_columns_sizing);
-    $window.resize(storytime_columns_sizing);
+    $window.load(fit_with_book_image);
+    $window.resize(fit_with_book_image);
   </script>
 
   <!-- In production use:

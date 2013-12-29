@@ -2,6 +2,10 @@
 #book-image {
   max-width: 100%;
 }
+#next-page, #prev-page {
+  position: absolute;
+  cursor: pointer;
+}
 
 #story-image {
   max-width: 100%;
