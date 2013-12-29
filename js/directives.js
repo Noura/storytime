@@ -5,16 +5,26 @@
 storytime.directive('myTextFit', function($document) {
     function link(scope, element, attrs) {
 
-        var words = [];
-        angular.forEach(scope.page.text, function(paragraph, p) {
-            var these_words = paragraph.split(/\s/g);
-            words.push.apply(words, these_words);
-            words.push('<br><br>');
-        });
+        var words, wi, wf, w;
 
-        var wi = -1;
-        var wf = -1;
-        var w = 0;
+        var init = function() {
+            wi = -1;
+            wf = -1;
+            w = 0;
+            words = [];
+            angular.forEach(scope.page.text, function(paragraph, p) {
+                var these_words = paragraph.split(/\s/g);
+                words.push.apply(words, these_words);
+                words.push('<br><br>');
+            });
+        };
+
+        scope.at_page_beginning = function() {
+            return (wi === 0);
+        };
+        scope.at_page_end = function() {
+            return (wf >= words.length);
+        }
 
         var range_check = function(w) {
             // intentionally shadows w to test out if a new value is in range
@@ -43,12 +53,10 @@ storytime.directive('myTextFit', function($document) {
                 w = wi = wf + 1;
                 next = incr;
                 insert = 'append';
-                console.log('going forward from word', w);
             } else if (dir === 'backward') {
                 w = wf = wi - 1;
                 next = decr;
                 insert = 'prepend';
-                console.log('going backward from word', w);
             }
             var $inner = $('<div></div>');
             element.html($inner);
@@ -71,23 +79,16 @@ storytime.directive('myTextFit', function($document) {
                 c = next();
             } while (c && $inner.height() <= element.height());
 
-            // TODO double check and test how to update wi and wf
             if (dir === 'forward') {
-                wf = w - 1;
+                wf = c ? w - 2 : w;
             } else if (dir === 'backward') {
-                wi = w + 1;
+                wi = c ? w + 1 : w;
             }
 
             if ($inner.height() > element.height()) {
                 $word.remove();
-                if (dir === 'forward') {
-                    wf -= 1;
-                }
             }
-
         };
-
-        display_page('forward');
 
         scope.$watch(function() {
             return scope.page_turn_dir;
@@ -97,6 +98,18 @@ storytime.directive('myTextFit', function($document) {
                 scope.page_turn_dir = null;
             }
         });
+
+        scope.$watch(function() {
+            return scope.page.page;
+        }, function(newValue, oldValue) {
+            if (newValue !== oldValue) {
+                init();
+                display_page('forward');
+            }
+        });
+
+        init();
+        display_page('forward');
     }
 
     return {
