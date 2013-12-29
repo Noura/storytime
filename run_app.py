@@ -1,5 +1,7 @@
 from storytime import app, db
 import storytime.config as config
+import storytime.models as models
+import storytime.mock as mock
 
 from flask.ext.script import Manager
 
@@ -10,7 +12,7 @@ def create_app(cfg=None):
     elif cfg=='production':
         app.config.from_object(config.productionConfig)
     else:
-        raise NameError("This cfguration name is not allowed!")
+        raise NameError("This confguration name is not allowed!")
     return app
 
 manager = Manager(create_app)
