@@ -5,6 +5,11 @@
 storytime.directive('myTextFit', function($document) {
     function link(scope, element, attrs) {
 
+      scope.paragraphs = [];
+      angular.forEach(scope.page.text, function(paragraph, i) {
+        scope.paragraphs.push(paragraph.split(/\s/g));
+      });
+
       scope.start_p = 0; // index in scope.paragraphs of first word on page
       scope.start_w = 0; // index in scope.paragraphs[scope.start_p] of
                          // first word on page
