@@ -20,6 +20,7 @@ storytime.directive('myBookColumns', function($document) {
           });
         };
 
+        // TODO throttle these callbacks for performance
         $window.load(function() {
             fit_with_book_image();
             scope.reflow_words();
@@ -82,6 +83,7 @@ storytime.directive('myTextFit', function($document) {
             }
         };
 
+        // going forward or backward within the same story page
         var display_page = function(direction) {
             dir = direction;
             if (dir === 'forward') {
@@ -96,8 +98,9 @@ storytime.directive('myTextFit', function($document) {
             reflow_words();
         };
 
+        // either reflows words forwards from wi or backwards from wf
+        // such that they fit on the page
         var reflow_words = function() {
-            console.log('reflow words', dir, 'w', w, 'wi', wi, 'wf', wf);
             var $inner = $('<div></div>');
             element.html($inner);
             var $word = null;
@@ -131,6 +134,9 @@ storytime.directive('myTextFit', function($document) {
                 $word.remove();
             }
         };
+
+        // reflows words forward from wi
+        // ex. used on window 'resize' event
         scope.reflow_words = function() {
             w = wi;
             dir = 'forward';
@@ -139,6 +145,7 @@ storytime.directive('myTextFit', function($document) {
             reflow_words();
         };
 
+        // scope.page_turn_dir is set by PageCtrl to trigger going forward/back
         scope.$watch(function() {
             return scope.page_turn_dir;
         }, function(newValue, oldValue) {
@@ -148,6 +155,7 @@ storytime.directive('myTextFit', function($document) {
             }
         });
 
+        // if we get a new page, start out flowing forward
         scope.$watch(function() {
             return scope.page.page;
         }, function(newValue, oldValue) {
