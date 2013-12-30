@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" ng-app="storytime_homepage">
+    <head>
+        <meta charset="utf-8">
+        <title>Story Time</title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <!-- In production use:
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+        -->
+        <script src="/static/js/lib/angular/angular.js"></script>
+        <script src="/static/js/homepage/app.js"></script>
+        <script src="/static/js/homepage/services.js"></script>
+        <script src="/static/js/homepage/controllers.js"></script>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/static/css/app.css"/>
+    </head>
+    <body>
+
+        <div class="jumbotron">
+            <div class="container">
+                Welcome to Story Time.
+                <p>
+                    <a role="button" class="btn btn-primary btn-lg" href="/1">Read a Story</a>
+                </p>
+                <div ng-controller="UserCtrl">
+                    <div>
+                        <form ng-submit="signIn()">
+                            <input type="text" ng-model="userName" size="30" placeholder="returning user name">
+                            <input class="btn btn-primary" type="submit" value="add">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

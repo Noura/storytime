@@ -3,6 +3,9 @@ from flask.json import dumps
 from storytime import app
 from storytime.content import get_content
 
+@app.route('/')
+def home():
+    return make_response(open('angular_templates/index.html').read())
 
 @app.route('/<int:story>/<int:page>')
 def storypage(story, page):
