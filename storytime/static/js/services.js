@@ -35,15 +35,15 @@ var PAGES = [
 
 storytime.factory('storyAPI', function($http) {
     return {
+        /*
         getPage: function(n) {
           return $http.get('http://localhost:5000/rest/lipsum/' + n)
                     .then(function(result) {
                       return result.data;
                     });
-        },
-        /*
-        this.getPage = function(n) {
+        },*/
+        getPage: function(n) {
             return PAGES[n - 1];
-        };*/
+        }
     }
 });
