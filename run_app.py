@@ -4,7 +4,6 @@ import storytime.dbtools as dbtools
 
 from flask.ext.script import Manager
 
-
 def create_app(cfg=None):
     if cfg=='debug':
         app.config.from_object(config.debugConfig)

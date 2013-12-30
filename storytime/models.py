@@ -1,6 +1,6 @@
 from storytime import db
 
-class Story(db.model):
+class Story(db.Model):
     __tablename__ = 'library'
     story_id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(200))
@@ -25,7 +25,7 @@ class Story(db.model):
     def set_length(self, pages):
         self.pages = pages
 
-class Page(db.model):
+class Page(db.Model):
     __tablename__ = 'pages'
     page_id = db.Column(db.Integer, primary_key=True)
     page_number = db.Column(db.Integer)
