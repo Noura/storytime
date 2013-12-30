@@ -24,3 +24,23 @@ def storycontent(story, page):
 @app.route('/rest/lipsum/<page>')
 def storylipsum(page):
 	return dumps(get_content(1337, page))
+
+@app.route('/rest/users/login', methods=['POST'])
+def login():
+    #TODO actually do stuff? maybe return list of their stories?
+    data = request.get_json()
+    userName = data['userName']
+    res = {}
+    res['userName'] = userName
+    res['status'] = 'We will pretend we did something.'
+    return jsonify(res)
+
+@app.route('/rest/users/new', methods=['POST'])
+def newUser():
+    #TODO actually do stuff, like make new user in DB
+    data = request.get_json()
+    userName = data['userName']
+    res = {}
+    res['userName'] = userName
+    res['status'] = 'We will pretend we did something.'
+    return jsonify(res)
