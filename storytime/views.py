@@ -12,7 +12,7 @@ def storypage(story, page):
 
 @app.route('/<int:story>')
 def serve_js_reader(story):
-      return make_response(open('angular_templates/index.html').read())
+      return make_response(open('angular_templates/reading_story.html').read())
 
 @app.route('/rest/<story>/<page>')
 def storycontent(story, page):
