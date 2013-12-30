@@ -1,7 +1,10 @@
 'use strict';
 
 storytime.controller('PageCtrl', function($scope, storyAPI) {
-    $scope.page = storyAPI.getPage(1);
+    $scope.page = storyAPI.getPage(1).then(function(d) {
+        $scope.page = d;
+        console.log('$scope.page', $scope.page);
+    });
 
     $scope.pageTurn = function(dir) {
         $scope.set_direction(dir);

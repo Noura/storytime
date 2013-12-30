@@ -19,5 +19,5 @@ def storycontent(story, page):
 	return dumps(get_content(story, page))
 
 @app.route('/rest/lipsum/<page>')
-def storylipsum():
+def storylipsum(page):
 	return dumps(get_content(1337, page))
