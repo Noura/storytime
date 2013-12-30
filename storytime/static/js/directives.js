@@ -210,7 +210,6 @@ storytime.directive('myPageTurner', function($document) {
 
         // don't show arrows when there are no more pages in that direction
         var hide_or_show = function() {
-            console.log('hide_or_show', 'at page end', scope.at_page_end(), 'direction', direction, 'at page beginning', scope.at_page_beginning());
             if (   (
                     scope.at_page_end()                // if we are at the end
                     && scope.page.page === scope.page.pages // of the last page,
