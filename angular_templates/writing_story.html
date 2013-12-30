@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" ng-app="writing_story">
+<head>
+    <meta charset="utf-8">
+    <title>Story Time</title>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <!-- In production use:
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    -->
+    <script src="/static/js/lib/angular/angular.js"></script>
+    <script src="/static/js/writing_story.js"></script>
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/static/css/app.css"/>
+</head>
+<body>
+
+    <div class="container" ng-controller="InputCtrl">
+        <form ng-submit="createStory()">
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text" ng-model="title" size="50" placeholder="Title">
+                </div>
+                <div class="col-md-6">
+                    <span>by</span>
+                    <input type="text" ng-model="author" size="20" placeholder="Author">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <input class="btn btn-primary" type="submit" value="Publish">
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

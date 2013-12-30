@@ -7,6 +7,10 @@ from storytime.content import get_content
 def home():
     return make_response(open('angular_templates/index.html').read())
 
+@app.route('/createStory')
+def createStory():
+    return make_response(open('angular_templates/writing_story.html').read())
+
 @app.route('/<int:story>/<int:page>')
 def storypage(story, page):
 	return render_template('storypage.html',
