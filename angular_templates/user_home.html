@@ -17,24 +17,23 @@
     </head>
     <body>
 
-        <div class="jumbotron">
-            <div class="container">
-                Welcome to Story Time.
-                <p>
-                    <a role="button" class="btn btn-primary btn-lg" href="/1">Read a Story</a>
-                </p>
-                <div ng-controller="UserCtrl">
-                    <div>
-                        <input type="text" ng-model="userName" size="30" placeholder="User Name">
-                        <form ng-submit="signIn()">
-                            <input class="btn btn-primary" type="submit" value="Log In">
-                        </form>
-                        <form ng-submit="signUp()">
-                            <input class="btn btn-primary" type="submit" value="Sign Up">
-                        </form>
-                    </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <p>Welcome back!</p> 
+                </div>
+                <div class="col-md-4" ng-controller="NewStoryCtrl">
+                    <button class="btn btn-primary" ng-click="goToNewStoryPage()">New Story</button>
+                </div>
+            </div>
+            <div class="row" ng-controller="OldStoriesCtrl">
+                <div class="col-xs-6 col-md-3" ng-repeat="story in stories">
+                    <a href="{{story.url}}" class="thumbnail">
+                        <img src="{{story.thumbnail}}">
+                    </a>
                 </div>
             </div>
         </div>
+
     </body>
 </html>
