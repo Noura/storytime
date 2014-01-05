@@ -10,7 +10,7 @@ def create_app(cfg=None):
     elif cfg=='production':
         app.config.from_object(config.productionConfig)
     else:
-        raise NameError("This confguration name is not allowed!")
+        raise NameError("This configuration name is not allowed!")
     return app
 
 manager = Manager(create_app)
