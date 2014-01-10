@@ -48,10 +48,10 @@ p:first-child {
     padding-bottom: 1em;
 }
 
-.font-large {
-    font-size: 200%;
-}
 
-.font-med {
-    font-size: 150%;
+
+.thumbnail-title {
+    color: #333;
+    text-decoration: none;
+    padding-top: .5em;
 }

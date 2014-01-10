@@ -18,38 +18,68 @@
 </head>
 <body>
 
+    <div class="navbar navbar-default" role="navigation">
+        <a class="navbar-brand" href="/">Story Time</a>
+    </div>
+
     <div class="container" ng-controller="NewStoryCtrl">
-        <form ng-submit="createStory()">
-            <div class="row vertical-padding">
-                <div class="col-md-12">
-                    <input class="fill-width font-large" type="text" ng-model="title"  placeholder="Title">
+        <div class="row">
+            <div class="col-md-12">
+                <blockquote>
+                    <p>Write your story...</p>
+                </blockquote>
+            </div>
+        </div>
+        <div class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="new-story-title" class="col-md-2 control-label">Title</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="new-story-title" placeholder="Title" ng-model="title">
                 </div>
             </div>
-            <div class="row vertical-padding">
-                <div class="col-md-1">
-                    <span>by</span>
-                </div>
-                <div class="col-md-11">
-                    <input type="text" class="fill-width font-med" ng-model="author" placeholder="Author">
+            <div class="form-group">
+                <label for="new-story-author" class="col-md-2 control-label">Author</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="new-story-author" placeholder="Author" ng-model="author">
                 </div>
             </div>
-            <div class="row vertical-padding" ng-repeat="page in pages">
-                <div class="col-md-3" my-image-uploader>
+        </div>
+
+        <form role="form" ng-repeat="page in pages">
+            <div class="form-group">
+                <div class="col-md-12">Page {{$index + 1}} of {{pages.length}}</div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Picture</label>
+                <label class="col-md-8 control-label">Text</label>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4" my-image-uploader>
                     <p>TODO: make image uploader directive</p>
                 </div>
-                <div class="col-md-7">
-                    <textarea class="fill-width" rows="15" type="text" placeholder="Text for page {{$index + 1}}" ng-model="page.text"></textarea>
-                </div>
-                <div class="col-md-2">
-                    <p>Page {{$index + 1}} of {{pages.length}} </p>
-                </div>
-            </div>
-            <div class="row vertical-padding">
-                <div class="col-md-12">
-                    <input class="btn btn-primary" type="submit" value="Publish">
+                <div class="col-md-8">
+                    <textarea class="form-control" rows="15" type="text" placeholder="Text for page {{$index + 1}}" ng-model="page.text"></textarea>
                 </div>
             </div>
         </form>
+
+        <div class="form">
+            <div class="form-group">
+                <div class="col-md-10"></div>
+                <div class="col-md-2">
+                    <button class="btn btn-default">Add Page</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <button class="btn btn-primary">Publish</button>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </body>

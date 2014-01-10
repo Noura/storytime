@@ -60,7 +60,7 @@ storytime.controller('NewStoryCtrl', function($scope) {
 storytime.controller('OldStoriesCtrl', function($scope) {
     // TODO get this from the server
     $scope.stories = [
-        { url: 'blahblahblah', thumbnail: 'http://digital.library.upenn.edu/women/williams/rabbit/spring.jpeg' },
-        { url: 'blahblah2', thumbnail: 'http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2009/1/10/1231580586710/Winnie-the-Pooh-001.jpg' }
+        { url: 'blahblahblah', thumbnail: 'http://digital.library.upenn.edu/women/williams/rabbit/spring.jpeg', title: 'The Velveteen Rabbit' },
+        { url: 'blahblah2', thumbnail: 'http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2009/1/10/1231580586710/Winnie-the-Pooh-001.jpg', title: 'Winnie the Pooh' }
     ];
 });
