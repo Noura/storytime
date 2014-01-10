@@ -17,23 +17,23 @@
     </head>
     <body>
 
+        <div class="navbar navbar-default" role="navigation">
+            <a class="navbar-brand" href="#">Story Time</a>
+            <div class="navbar-right navbar-form" ng-controller="UserCtrl">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Your Name" ng-model="userName">
+                </div>
+                <button class="btn btn-default" ng-click="signIn()" value="Log In">Log In</button>
+                <button class="btn btn-primary" ng-click="signUp()" value="Sign Up">Sign Up</button>
+            </div>
+        </div>
+
         <div class="jumbotron">
             <div class="container">
                 Welcome to Story Time.
                 <p>
                     <a role="button" class="btn btn-primary btn-lg" href="/1">Read a Story</a>
                 </p>
-                <div ng-controller="UserCtrl">
-                    <div>
-                        <input type="text" ng-model="userName" size="30" placeholder="User Name">
-                        <form ng-submit="signIn()">
-                            <input class="btn btn-primary" type="submit" value="Log In">
-                        </form>
-                        <form ng-submit="signUp()">
-                            <input class="btn btn-primary" type="submit" value="Sign Up">
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
     </body>
