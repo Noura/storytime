@@ -52,10 +52,6 @@ storytime.controller('NewStoryCtrl', function($scope) {
 
     $scope.pages = [{image:'', text:''}];
 
-    $scope.goToNewStoryPage = function() {
-        window.location.pathname = '/createStory';
-    };
-
     $scope.createStory = function() {
         window.alert("TODO: send request to server to create Story");
     };

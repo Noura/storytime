@@ -17,13 +17,19 @@
     </head>
     <body>
 
+        <div class="navbar navbar-default" role="navigation">
+            <a class="navbar-brand" href="/">Story Time</a>
+            <div class="navbar-right navbar-form">
+                <a href="/createStory" class="btn btn-success">New Story</a>
+            </div>
+        </div>
+
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
-                    <p>Welcome back!</p> 
-                </div>
-                <div class="col-md-4" ng-controller="NewStoryCtrl">
-                    <button class="btn btn-primary" ng-click="goToNewStoryPage()">New Story</button>
+                <div class="col-md-12">
+                    <blockquote>
+                        <p>Welcome back!</p>
+                    </blockquote>
                 </div>
             </div>
             <div class="row" ng-controller="OldStoriesCtrl">
