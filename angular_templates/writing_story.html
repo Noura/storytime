@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="writing_story">
+<html lang="en" ng-app="storytime">
 <head>
     <meta charset="utf-8">
     <title>Story Time</title>
@@ -9,25 +9,42 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     -->
     <script src="/static/js/lib/angular/angular.js"></script>
-    <script src="/static/js/writing_story.js"></script>
-
+    <script src="/static/js/app.js"></script>
+    <script src="/static/js/services.js"></script>
+    <script src="/static/js/controllers.js"></script>
+    <script src="/static/js/directives.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/static/css/app.css"/>
 </head>
 <body>
 
-    <div class="container" ng-controller="InputCtrl">
+    <div class="container" ng-controller="NewStoryCtrl">
         <form ng-submit="createStory()">
-            <div class="row">
-                <div class="col-md-6">
-                    <input type="text" ng-model="title" size="50" placeholder="Title">
-                </div>
-                <div class="col-md-6">
-                    <span>by</span>
-                    <input type="text" ng-model="author" size="20" placeholder="Author">
+            <div class="row vertical-padding">
+                <div class="col-md-12">
+                    <input class="fill-width font-large" type="text" ng-model="title"  placeholder="Title">
                 </div>
             </div>
-            <div class="row">
+            <div class="row vertical-padding">
+                <div class="col-md-1">
+                    <span>by</span>
+                </div>
+                <div class="col-md-11">
+                    <input type="text" class="fill-width font-med" ng-model="author" placeholder="Author">
+                </div>
+            </div>
+            <div class="row vertical-padding" ng-repeat="page in pages">
+                <div class="col-md-3" my-image-uploader>
+                    <p>TODO: make image uploader directive</p>
+                </div>
+                <div class="col-md-7">
+                    <textarea class="fill-width" rows="15" type="text" placeholder="Text for page {{$index + 1}}" ng-model="page.text"></textarea>
+                </div>
+                <div class="col-md-2">
+                    <p>Page {{$index + 1}} of {{pages.length}} </p>
+                </div>
+            </div>
+            <div class="row vertical-padding">
                 <div class="col-md-12">
                     <input class="btn btn-primary" type="submit" value="Publish">
                 </div>

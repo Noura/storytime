@@ -1,7 +1,7 @@
 'use strict';
 
 storytime.controller('UserCtrl', function($scope, userAPI) {
-    console.log('UserCtrl $scope', $scope);
+
     $scope.signIn = function() {
         console.log('UserCtrl.signIn username', $scope.userName);
         var response = userAPI.signIn($scope.userName).then(function(d) {
@@ -19,7 +19,7 @@ storytime.controller('UserCtrl', function($scope, userAPI) {
 });
 
 storytime.controller('PageCtrl', function($scope, storyAPI) {
-    console.log('PageCtrl $scope', $scope);
+
     /*
     $scope.page = storyAPI.getPage(1).then(function(d) {
         $scope.page = d;
@@ -49,14 +49,19 @@ storytime.controller('PageCtrl', function($scope, storyAPI) {
 });
 
 storytime.controller('NewStoryCtrl', function($scope) {
-    console.log('NewStoryCtrl $scope', $scope);
+
+    $scope.pages = [{image:'', text:''}];
+
     $scope.goToNewStoryPage = function() {
-        window.alert("TODO: make a new story page and go there");
+        window.location.pathname = '/createStory';
+    };
+
+    $scope.createStory = function() {
+        window.alert("TODO: send request to server to create Story");
     };
 });
 
 storytime.controller('OldStoriesCtrl', function($scope) {
-    console.log('OldStoriesCtrl $scope', $scope);
     // TODO get this from the server
     $scope.stories = [
         { url: 'blahblahblah', thumbnail: 'http://digital.library.upenn.edu/women/williams/rabbit/spring.jpeg' },

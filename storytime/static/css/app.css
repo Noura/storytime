@@ -38,3 +38,20 @@
 p:first-child {
   -webkit-margin-before: 0;
 }
+
+.fill-width {
+    width: 100%;
+}
+
+.row.vertical-padding {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.font-large {
+    font-size: 200%;
+}
+
+.font-med {
+    font-size: 150%;
+}
