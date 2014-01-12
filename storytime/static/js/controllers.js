@@ -55,6 +55,10 @@ storytime.controller('NewStoryCtrl', function($scope) {
     $scope.createStory = function() {
         window.alert("TODO: send request to server to create Story");
     };
+
+    $scope.addPage = function() {
+        $scope.pages.push({image:'', text:''});
+    };
 });
 
 storytime.controller('OldStoriesCtrl', function($scope) {
