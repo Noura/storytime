@@ -55,3 +55,14 @@ p:first-child {
     text-decoration: none;
     padding-top: .5em;
 }
+
+.outer-center {
+    position: relative;
+    float: right;
+    right: 50%;
+}
+.inner-center {
+    position: relative;
+    float: right;
+    right: -50%;
+}
