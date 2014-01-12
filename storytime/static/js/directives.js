@@ -261,3 +261,19 @@ storytime.directive('myPageTurner', function($document) {
         link: link
     };
 });
+
+
+storytime.directive('myImageUploader', function($document) {
+    function link(scope, element, attrs) {
+        var $el = $(element);
+        $el.dropzone({url: '/image/post'}).addClass('dropzone').html('Drag in images or click to browse');
+
+
+        
+
+    }
+
+    return {
+        link: link
+    };
+});

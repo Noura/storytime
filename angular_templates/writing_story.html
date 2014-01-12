@@ -9,12 +9,14 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     -->
     <script src="/static/js/lib/angular/angular.js"></script>
+    <script src="/static/js/lib/dropzone.js"></script>
     <script src="/static/js/app.js"></script>
     <script src="/static/js/services.js"></script>
     <script src="/static/js/controllers.js"></script>
     <script src="/static/js/directives.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/static/css/app.css"/>
+    <link rel="stylesheet" href="/static/css/dropzone.css"/>
 </head>
 <body>
 
@@ -57,11 +59,11 @@
                     <label class="col-md-8 control-label">Text</label>
                 </div>
                 <div class="row form-group">
-                    <div class="col-md-4" my-image-uploader>
-                        TODO: make image uploader directive
+                    <div class="col-md-4">
+                        <div my-image-uploader></div>
                     </div>
                     <div class="col-md-8">
-                        <textarea class="form-control" rows="15" type="text" placeholder="Text for page {{$index + 1}}" ng-model="page.text"></textarea>
+                        <textarea class="form-control" rows="17" type="text" placeholder="Text for page {{$index + 1}}" ng-model="page.text"></textarea>
                     </div>
                 </div>
             </div>
