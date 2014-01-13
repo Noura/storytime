@@ -266,10 +266,12 @@ storytime.directive('myPageTurner', function($document) {
 storytime.directive('myImageUploader', function($document) {
     function link(scope, element, attrs) {
         var $el = $(element);
-        $el.dropzone({url: '/image/post'}).addClass('dropzone').html('Drag in images or click to browse');
-
-
-        
+        $el.dropzone({
+            url: '/image/post',
+            maxFilesize: 2, //MB
+            paramName: 'ImageForPage' + attrs.page,
+            maxFiles: 1,
+        }).addClass('dropzone').html('<p>Drag in an image or click to brwose. Limit to one image per page.</p>');
 
     }
 
